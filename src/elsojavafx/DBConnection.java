@@ -76,12 +76,12 @@ public class DBConnection {
     
     }
     
-    public String checkPlayerName(String name){
+    public String checkPlayerName(String name, String pw){
     String jelszo = null;
         
     try{
             
-        String query = "SELECT password FROM othello_db WHERE name LIKE '"+ name +"'";
+        String query = "SELECT password FROM othello_db WHERE name LIKE '"+ name +"' AND password LIKE '"+pw;
         rt = st.executeQuery(query);
         jelszo = rt.getString("password");
     
