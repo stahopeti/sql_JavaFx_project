@@ -76,22 +76,24 @@ public class DBConnection {
     
     }
     
-    public String checkPlayerName(String name, String pw){
-    String jelszo = null;
-        
+    public boolean checkPlayerName(String name, String pw){
+    
     try{
-            
+    
+        rt = null;    
         String query = "SELECT password FROM othello_db WHERE name LIKE '"+ name +"' AND password LIKE '"+pw;
         rt = st.executeQuery(query);
-        jelszo = rt.getString("password");
+        if(rt!=null){
+            return true;
+        }
     
     }catch(Exception ex){
         
         System.out.println(ex);
-        
+        return false;
     }
     
-    return jelszo;
+    return true;
     
     }
 }

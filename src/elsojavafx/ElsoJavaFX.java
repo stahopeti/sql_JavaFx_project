@@ -13,14 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -29,107 +22,79 @@ import javafx.stage.Stage;
  */
 public class ElsoJavaFX extends Application {
     
+    Stage window;
+    
+    
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Signing in!");
-        
-        primaryStage.show();
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25,25,25,25));
-        
-        grid.setGridLinesVisible(false);
-        
-        Scene scene = new Scene(grid, 600, 300);
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
 
-        primaryStage.centerOnScreen();
+        window = primaryStage;
+        window.setTitle("Főmenü");
+        window.show();
         
-        Text signIn = new Text("Sign in!");
-        signIn.setFont(Font.font("Arial",FontWeight.EXTRA_BOLD, 20));
-        grid.add(signIn, 1,1);
+        GridPane layout = new GridPane();
         
-        Text signUp = new Text("Sign up!");
-        signUp.setFont(Font.font("Arial",FontWeight.EXTRA_BOLD, 20));
-        grid.add(signUp, 3, 1);
-        
-        Label userName = new Label("Username:");
-        userName.setFont(new Font("Arial", 12));
-        grid.add(userName, 0,2);
+        Scene scene = new Scene(layout,277,400);
+        scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
         
         
-        Label newUserName = new Label("New Username:");
-        newUserName.setFont(new Font("Arial", 12));
-        grid.add(newUserName, 2,2);
+        layout.setAlignment(Pos.CENTER);
+        layout.setHgap(30);
+        layout.setVgap(30);
+        layout.setPadding(new Insets(30,30,30,30));
+        layout.setId("pane");
         
-        TextField userNameTF = new TextField();
-        grid.add(userNameTF,1,2);
+        window.setScene(scene);
+        window.centerOnScreen();
         
+        Text szoveg = new Text("Főmenü");
+        szoveg.setId("text");
+        layout.add(szoveg, 0, 0);   
         
-        TextField newUserNameTF = new TextField();
-        grid.add(newUserNameTF,3,2);
-        
-//        Label paWo = new Label("Password:");
-//        paWo.setFont(new Font("Arial", 12));
-//        grid.add(paWo, 0,3);
-        
-        
-        Label newPaWo = new Label("Password:");
-        newPaWo.setFont(new Font("Arial", 12));
-        grid.add(newPaWo, 2,3);
-        
-//        PasswordField pwField = new PasswordField();
-//        grid.add(pwField, 1,3);
+        Button elsoOldal = new Button("Első Oldal");
+        layout.add(elsoOldal, 0, 1);
         
         
-        PasswordField newPwField = new PasswordField();
-        grid.add(newPwField, 3,3);
-        
-        Button btn = new Button("Sign in");
-        HBox hbBtn = new HBox(10);
-        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
-        hbBtn.getChildren().add(btn);
-        grid.add(hbBtn,1,5);
-        
-        Button btnUp = new Button("Sign up");
-        HBox hbBtnUp = new HBox(10);
-        hbBtnUp.setAlignment(Pos.BOTTOM_RIGHT);
-        hbBtnUp.getChildren().add(btnUp);
-        grid.add(hbBtnUp,3,5);
-        
-        final Text actiontarget = new Text();
-        grid.add(actiontarget, 1, 6);
-        
-        btn.setOnAction(new EventHandler<ActionEvent>(){
-        
-            @Override
-            public void handle(ActionEvent e){
-            
-                BackendLogic backnd = new BackendLogic();
-
-                
-            }
+        Button masodikOldal = new Button("Második Oldal");
+        layout.add(masodikOldal, 0, 2);
         
         
-        });
+        //BUTTONS
+        //BUTTONS
         
-        btnUp.setOnAction(new EventHandler<ActionEvent>(){
+        elsoOldal.setOnAction(new EventHandler<ActionEvent>(){
         
-            @Override
-            public void handle(ActionEvent e){
+        @Override
+        public void handle(ActionEvent e){
         
-            BackendLogic backnd = new BackendLogic();
-            
-            backnd.bckndAddPlayer(newUserNameTF.getText(),newPwField.getText());
-            
-            
+            FoablakStage asd = new FoablakStage();
+            asd.show();
+                 
         
         }
         
+        
+        
         });
+        
+        masodikOldal.setOnAction(new EventHandler<ActionEvent>(){
+        
+        @Override
+        public void handle(ActionEvent e){
+        
+            MasikAblakStage asd = new MasikAblakStage();
+            asd.show();
+                 
+        
+        }
+        
+        
+        
+        });
+        
+        //BUTTONS
+        //BUTTONS
+        
         
     }
 
@@ -139,8 +104,8 @@ public class ElsoJavaFX extends Application {
     
         
         
-    public static void main(String[] args) {
-        launch(args);
-    }
+//    public static void main(String[] args) {
+//        launch(args);
+//    }
     
 }
